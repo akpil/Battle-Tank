@@ -4,6 +4,9 @@
 # Visual Studio 2015 database file
 *.VC.db
 
+# Visual Studio 2017 database file
+*.VC.db*
+
 # Compiled Object files
 *.slo
 *.lo
