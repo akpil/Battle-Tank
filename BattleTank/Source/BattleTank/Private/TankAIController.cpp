@@ -9,7 +9,7 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank* ControlledTank = GetControlledTank();
+	ControlledTank = GetControlledTank();
 	if (ControlledTank == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AIController ont possesing a tank"));
@@ -27,6 +27,17 @@ void ATankAIController::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AI find out there is player %s"), *(PlayersTank->GetName()));
+	}
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (GetPlayerTank() != nullptr)
+	{
+		//TODO Move towars the player
+		ControlledTank->AimAt(GetPlayerTank()->GetActorLocation());
 	}
 }
 
