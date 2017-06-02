@@ -5,7 +5,10 @@
 
 
 
-void UTankBarrel::Elevate(float DegreesPerSecond)
+void UTankBarrel::Elevate(float RelativeSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Barrel.elevate() calld at speed %f"), DegreesPerSecond);
+	//UE_LOG(LogTemp, Warning, TEXT("Barrel.elevate() calld at speed %f"), RelativeSpeed);
+	float ElevationChange = FMath::Clamp<float>(RelativeSpeed, -1, 1) * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
+	float RawNewElevation = FMath::Clamp<float>(RelativeRotation.Pitch + ElevationChange, MinElevationDegrees, MaxElevationDegrees);
+	SetRelativeRotation(FRotator(RawNewElevation, 0, 0));
 }
