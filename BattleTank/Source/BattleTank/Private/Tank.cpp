@@ -39,9 +39,14 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+void ATank::Fire()
+{
+	float Time = GetWorld()->GetTimeSeconds();
+	UE_LOG(LogTemp, Warning, TEXT("%f fireing"), Time);
+}
+
 void ATank::AimAt(FVector HitLocation)
 {
 	auto OurTankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s aming at %s"), *OurTankName, *(HitLocation.ToString()));
 	TankAimingCompoenent->AimAt(HitLocation, LaunchSpeed);
 }
