@@ -21,7 +21,9 @@ void ATankAIController::Tick(float DeltaTime)
 
 	if (PlayerTank != nullptr && ControlledTank != nullptr)
 	{
-		//TODO Move towars the player
+		// Move towars the player
+		MoveToActor(PlayerTank, AcceptanceRadious);
+
 		ControlledTank->AimAt(PlayerTank->GetActorLocation());
 
 		ControlledTank->Fire();//TODO fireing rate setting

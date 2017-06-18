@@ -8,7 +8,7 @@
 
 void UTankTrack::SetThrottle(float Throttle)
 {
-	auto ForceApplied = GetForwardVector() * FMath::Clamp(Throttle, 0.f, 1.f) * TrackMaxDirvingForce;
+	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDirvingForce;
 	auto ForceLocation = GetComponentLocation();
 
 	auto TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
