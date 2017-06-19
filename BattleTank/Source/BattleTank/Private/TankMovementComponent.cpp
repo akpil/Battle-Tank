@@ -10,6 +10,15 @@ void UTankMovementComponent::Initialise(UTankTrack* left, UTankTrack* right)
 	RightTrack = right;
 }
 
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	IntendTurnRight(FVector::CrossProduct(TankForward, AIForwardIntention).Z);
+	IntendMoveForward(FVector::DotProduct(TankForward, AIForwardIntention));
+	//UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityStr);
+}
+
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	if (LeftTrack == nullptr || RightTrack == nullptr) { return; }
@@ -19,12 +28,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 }
 
-void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
-{
-	auto TankName = GetOwner()->GetName();
-	auto MoveVelocityStr = MoveVelocity.ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityStr);
-}
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
