@@ -22,7 +22,5 @@ private:
 
 	virtual void Tick(float DeltaTime) override;
 
-	ATank* ControlledTank;
-
 	float AcceptanceRadious = 3000;
 };
