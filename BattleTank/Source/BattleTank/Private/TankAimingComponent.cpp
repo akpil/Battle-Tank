@@ -53,7 +53,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	if (!ensure(Barrel)) { return; }
 	if (!ensure(Turret)) { return; }
-
+	UE_LOG(LogTemp, Warning, TEXT("i'm here"));
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto BarrelDeltaRotator = AimAsRotator - BarrelRotator;

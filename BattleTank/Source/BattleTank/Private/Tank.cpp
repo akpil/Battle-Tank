@@ -2,7 +2,6 @@
 
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "Tank.h"
@@ -20,6 +19,8 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+
+	TankAimingCompoenent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::Fire()
