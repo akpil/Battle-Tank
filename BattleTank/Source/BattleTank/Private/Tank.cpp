@@ -1,7 +1,6 @@
 // Copyright JJsoft.inc 2017
 
 #include "BattleTank.h"
-#include "TankAimingComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "Tank.h"
@@ -19,8 +18,6 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-
-	TankAimingCompoenent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::Fire()
@@ -32,14 +29,8 @@ void ATank::Fire()
 
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")));
 
-		Projectile->LaunchProjectile(LaunchSpeed);
+		//Projectile->LaunchProjectile(LaunchSpeed);
 
 		LastFireTime = FPlatformTime::Seconds();
 	}
-}
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (!ensure(TankAimingCompoenent)) { return; }
-	TankAimingCompoenent->AimAt(HitLocation, LaunchSpeed);
 }
