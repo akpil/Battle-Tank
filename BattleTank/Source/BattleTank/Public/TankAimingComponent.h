@@ -35,6 +35,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Controll)
 	void Fire();
+
+	EFiringState GetFiringState() const;
 		
 protected:
 

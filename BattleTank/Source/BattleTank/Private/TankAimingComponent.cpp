@@ -92,6 +92,11 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	Turret->Rotate(FVector::CrossProduct(TurretForward, AimDirection).Z);
 }
 
+EFiringState UTankAimingComponent::GetFiringState() const
+{
+	return FiringState;
+}
+
 void UTankAimingComponent::Fire()
 {
 	if (FiringState != EFiringState::Reloading) {

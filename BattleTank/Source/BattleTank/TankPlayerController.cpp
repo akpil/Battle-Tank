@@ -26,7 +26,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 	UTankAimingComponent* AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 
 	FVector outHitLocation;
-
 	if (GetSightRayHitLocation(outHitLocation))
 	{
 		if (ensure(!AimingComponent)) { return; }
@@ -46,8 +45,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & outHitLocation) con
 	if (GetLookdirection(ScreenLocation, LookDirection))
 	{
 		// Lint-trace alog that look direction, and see what we hit (up to max range)
-		GetLookVectorHitLocation(LookDirection, outHitLocation);
-		return true;
+		return GetLookVectorHitLocation(LookDirection, outHitLocation);
 	}
 	return false;
 }
