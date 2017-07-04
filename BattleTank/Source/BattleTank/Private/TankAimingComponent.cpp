@@ -96,6 +96,11 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	Turret->Rotate(FVector::CrossProduct(TurretForward, AimDirection).Z);
 }
 
+int32 UTankAimingComponent::GetRoundsLeft() const
+{
+	return AmmoLeft;
+}
+
 EFiringState UTankAimingComponent::GetFiringState() const
 {
 	return FiringState;
