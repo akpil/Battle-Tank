@@ -26,10 +26,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Effect")
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere, Category = "Effect")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void LaunchProjectile(float speed);
 	
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
