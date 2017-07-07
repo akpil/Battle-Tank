@@ -29,12 +29,20 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Effect")
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere, Category = "Component")
+	URadialForceComponent* ExplosionForce = nullptr;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 	void LaunchProjectile(float speed);
 	
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	
+	void OnTimerExprier();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float DestroyDelay = 10.f;
 };
